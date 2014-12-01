@@ -1,0 +1,10 @@
+[
+	{
+		"id":0,
+		"username":"Guest",
+		"password":"dragondoc guest profile",
+		"bio":"This is the guest user profile.  No one can edit it, but everyone can view it.",
+		"joinDate":"12/02/2014",
+		"updateDate":"12/02/2014"
+	}
+]
