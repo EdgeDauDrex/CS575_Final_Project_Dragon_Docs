@@ -219,35 +219,35 @@ public class DB {
 		summary = summary.replaceAll("(\r\n|\n\r|\r|\n|<br>|<br />)", "<br/>");
 		project.setSummary(summary);
 		User u;
-		List<Integer> updatingList;
+		List<Integer> updatingList, updatingList2;
 		if(users != null && !users.equals("")){
 			users = users.replaceAll("(\r\n|\n\r|\r|\n|<br>|<br />)", "<br/>");
 			String[] splitUsers = users.split("<br/>");
+			updatingList = project.getUids();
+			updatingList2 = project.getAllowedviewers();
 			for(int i = 0; i < splitUsers.length; i++){
 				u = getUserByName(splitUsers[i]);
 				if(u != null && !project.getUids().contains(u.getId())){
-					updatingList = project.getUids();
 					updatingList.add(u.getId());
-					project.setUids(updatingList);
 					if(!project.getAllowedviewers().contains(u.getId()) && !project.getAllowedviewers().contains(new Integer(0))){
-						updatingList = project.getAllowedviewers();
 						updatingList.add(u.getId());
-						project.setAllowedviewers(updatingList);
 					}
 				}
 			}
+			project.setUids(updatingList);
+			project.setAllowedviewers(updatingList2);
 		}
 		if(viewers != null && !viewers.equals("")){
 			viewers = viewers.replaceAll("(\r\n|\n\r|\r|\n|<br>|<br />)", "<br/>");
 			String[] splitViewers = viewers.split("<br/>");
+			updatingList = project.getAllowedviewers();
 			for(int i =0; i < splitViewers.length; i++){
 				u = getUserByName(splitViewers[i]);
 				if(u != null && !project.getAllowedviewers().contains(new Integer(0)) && !project.getAllowedviewers().contains(u.getId())){
-					updatingList = project.getAllowedviewers();
 					updatingList.add(u.getId());
-					project.setAllowedviewers(updatingList);
 				}
 			}
+			project.setAllowedviewers(updatingList);
 		}
 		ObjectMapper mapper = new ObjectMapper();
 		File jsonDB;

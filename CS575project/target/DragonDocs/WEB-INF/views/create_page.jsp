@@ -38,7 +38,9 @@
 	<center>
 	<h5>Page Details</h5>
 		<form method="post" action="/DragonDocs/users/${user.username}/contents/${content.id}/categories/${category.id}/projects/${project.id}/pages/upload" enctype="multipart/form-data">
-         <br/>Username:<input type="text" name="uid" readonly="readonly" value="${user.username}">
+         <br/>Username:<input type="text" name="curuid" readonly="readonly" value="${name}">
+         <br>
+         <br/>Owner:<input type="text" name="uid" readonly="readonly" value="${user.username}">
          <br>
          <br/>Page Name:<input type="text" name="pagename">
          <br>

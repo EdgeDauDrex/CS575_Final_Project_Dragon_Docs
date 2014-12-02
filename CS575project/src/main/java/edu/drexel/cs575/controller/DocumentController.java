@@ -1138,13 +1138,13 @@ public class DocumentController {
 	}
 	
 	@RequestMapping(value="/users/{name}/contents/{con}/categories/{cat}/projects/{proj}/pages/upload")
-	public ModelAndView uploadPage(@PathVariable String name, @PathVariable String con, @PathVariable String cat, @PathVariable String proj, @RequestParam String uid, @RequestParam String auth, @RequestParam String pagename, @RequestParam String summary, @RequestParam CommonsMultipartFile fileupload){
+	public ModelAndView uploadPage(@PathVariable String name, @PathVariable String con, @PathVariable String cat, @PathVariable String proj, @RequestParam String curuid, @RequestParam String uid, @RequestParam String auth, @RequestParam String pagename, @RequestParam String summary, @RequestParam CommonsMultipartFile fileupload){
 		User user;
 		try{
-			user = dbService.getUserByID(Integer.parseInt(uid));
+			user = dbService.getUserByID(Integer.parseInt(curuid));
 		}
 		catch(Exception e){
-			user = dbService.getUserByName(uid);
+			user = dbService.getUserByName(curuid);
 		}
 		if(user == null || !auth.equals(Integer.toHexString(user.hashCode()))){
 			user = dbService.getUserByID(0);
@@ -1210,7 +1210,7 @@ public class DocumentController {
 			RequestError error4 = new RequestError(404, "Unable to read project");
 			project = new Project(error4);
 		}
-		Page page = dbService.createPage(user.getUsername(),content.getFullId(),category.getFullId(),project.getFullId(),pagename,summary,fileupload);
+		Page page = dbService.createPage(target.getUsername(),content.getFullId(),category.getFullId(),project.getFullId(),pagename,summary,fileupload);
 		if(page == null){
 			RequestError error5 = new RequestError(404, "Unable to create page");
 			page = new Page(error5);
