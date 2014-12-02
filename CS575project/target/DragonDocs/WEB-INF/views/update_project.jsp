@@ -38,7 +38,9 @@
     <form action="/DragonDocs/projectUpdate.jsp" method="post">
          <br/>Project ID:<input type="text" name="projectname" readonly="readonly" value="${project.fullId}">
          <br>
-         <br/>Username:<input type="text" name="username" readonly="readonly" value="${user.username}">
+         <br/>Owner:<input type="text" name="username" readonly="readonly" value="${user.username}">
+         <br>
+         <br/>Username:<input type="text" name="myname" readonly="readonly" value="${name}">
          <br>
          <br/>Content Level:<input type="text" name="contentname" readonly="readonly" value="${content.name}">
          <br>

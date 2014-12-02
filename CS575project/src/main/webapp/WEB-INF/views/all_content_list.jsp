@@ -26,7 +26,7 @@
 	String fullId, uid, conid, catid, pid, pname, summary;
 	User u;
 	String auth = request.getParameter("auth");
-	String name = request.getParameter("name");
+	String name = (String)request.getAttribute("name");
 	String link;
 	for(Project p : plist){
 		fullId = p.getFullId().substring(1);

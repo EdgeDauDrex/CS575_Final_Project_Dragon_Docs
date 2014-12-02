@@ -196,7 +196,7 @@ public class DocumentController {
 		return model;
 	}
 	
-	@RequestMapping(value="/contents")
+	@RequestMapping(value="/projects")
 	public ModelAndView getAllContents(@RequestParam(value="uid", required=false, defaultValue="0") String uid, @RequestParam(value="auth", required=false, defaultValue="null") String auth){
 		User user;
 		try{
@@ -216,7 +216,7 @@ public class DocumentController {
 		List<Project> pList = dbService.getProjects();
 		RequestError error = null;
 		if (pList == null){
-			error = new RequestError(404, "Unable to read contents.json");
+			error = new RequestError(404, "Unable to read projects.json");
 		}
 		Projects contents = new Projects(pList,error);
 		ModelAndView model = new ModelAndView("all_content_list");
@@ -1227,7 +1227,7 @@ public class DocumentController {
 		model.addObject("category",category);
 		model.addObject("content",content);
 		model.addObject("user",target);
-		model.addObject("name", user.getUsername());
+		model.addObject("name", curuid);
 		model.addObject("auth", auth);
 		return model;
 	}

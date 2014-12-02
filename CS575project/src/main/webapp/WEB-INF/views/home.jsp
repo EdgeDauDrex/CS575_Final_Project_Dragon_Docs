@@ -14,7 +14,7 @@
 <br>
 <a href="/DragonDocs/users?uid=${name}&auth=${auth}">Users</a>
 <br>
-<a href="/DragonDocs/contents?uid=${name}&auth=${auth}">Contents</a>
+<a href="/DragonDocs/projects?uid=${name}&auth=${auth}">All Projects</a>
 <br>
 <br>
 <a href="/DragonDocs/users/${name}?uid=${name}&auth=${auth}">Your Profile</a>

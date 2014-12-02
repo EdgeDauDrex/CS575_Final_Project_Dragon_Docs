@@ -21,15 +21,16 @@
         String summary=request.getParameter("summary");
         String auth = request.getParameter("auth");
         String contrib = request.getParameter("new_users");
+        String myname = request.getParameter("myname");
         DB db = new DB();
         Content content = db.getContentByName(contentName);
         Category category = db.getCategoryByName(categoryName);
         Project project = db.getProjectByID(projectName);
         project = db.updateProject(project,summary,contrib,audience);
         if(project != null){
-        	response.sendRedirect("/DragonDocs/users/"+username+"/contents/"+content.getId()+"/categories/"+category.getId()+"/projects/"+project.getId()+"?uid="+username+"&auth="+auth);
+        	response.sendRedirect("/DragonDocs/users/"+username+"/contents/"+content.getId()+"/categories/"+category.getId()+"/projects/"+project.getId()+"?uid="+myname+"&auth="+auth);
         }else{
-        	response.sendRedirect("/DragonDocs/users/"+username+"/contents/"+content.getId()+"/categories/"+category.getId()+"/projects/project_fail?uid="+username+"&auth="+auth);
+        	response.sendRedirect("/DragonDocs/users/"+username+"/contents/"+content.getId()+"/categories/"+category.getId()+"/projects/project_fail?uid="+myname+"&auth="+auth);
         }
     %>
 </body>

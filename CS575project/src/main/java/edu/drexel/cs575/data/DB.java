@@ -230,14 +230,14 @@ public class DB {
 				if(u != null && !project.getUids().contains(u.getId())){
 					updatingList.add(u.getId());
 					if(!project.getAllowedviewers().contains(u.getId()) && !project.getAllowedviewers().contains(new Integer(0))){
-						updatingList.add(u.getId());
+						updatingList2.add(u.getId());
 					}
 				}
 			}
 			project.setUids(updatingList);
 			project.setAllowedviewers(updatingList2);
 		}
-		if(viewers != null && !viewers.equals("")){
+		if(viewers != null && !viewers.equals("") && !project.getAllowedviewers().contains(new Integer(0))){
 			viewers = viewers.replaceAll("(\r\n|\n\r|\r|\n|<br>|<br />)", "<br/>");
 			String[] splitViewers = viewers.split("<br/>");
 			updatingList = project.getAllowedviewers();
@@ -253,10 +253,11 @@ public class DB {
 		File jsonDB;
 		try {
 			jsonDB = new ClassPathResource("projects.json").getFile();
-			for(Project p : projects){
-				if(p.getId() == project.getId()){
-					projects.add(projects.indexOf(p), project);
-					projects.remove(p);
+			for(int i = 0; i<projects.size(); i++){
+				if(projects.get(i).getFullId().equals(project.getFullId())){
+					projects.add(i+1, project);
+					projects.remove(i);
+					break;
 				}
 			}
 			mapper.writerWithDefaultPrettyPrinter().writeValue(jsonDB,projects);
